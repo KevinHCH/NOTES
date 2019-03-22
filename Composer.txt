@@ -1,0 +1,25 @@
+== COMPOSER ==
+** MANUAL ES INSTALACION DE COMPOSER DESDE LINUX **
+-Abrir terminal
+-Descargar version de composer desde su pagina (https://getcomposer.org/download/)
+-Comprobar que se ha descargado el archivo: composer.phar 
+-Desde la carpeta de Descargas/, ejecutamos las sentencias: ()
+	php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+	php -r "if (hash_file('sha384', 'composer-setup.php') === '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+	php composer-setup.php
+	php -r "unlink('composer-setup.php');"
+-Ahora el archivo ha cambiado a otro color, significa que se ha instalado bien, comprobamos con el comando: ./composer.phar --version
+-Movemos el archivo a la carpeta /user/local/bin y le damos el nombre de "composer" para que este visible desde todo el SO
+	sudo mv composer.phar /usr/local/bin/composer
+-Desde cualquier parte del sistema, escribimos en la consola: 
+	composer --version 
+	Si nos devuelve la version de composer es que todo ha ido bien
+
+########## TENER EN CUENTA #####################################################################################
+PARA LA INSTALACION DE COMPOSER ES NECESARIO TENER UNA SERIE DE PROGRAMAS Y DEPENDENCIAS PREVIAMENTE INSTALADOS:
+	-apache2
+	-php7.2(o version mas actual)
+	-php7.2-xml
+	-php7.2-xsl
+	-php7.2-curl
+#################################################################################################################
