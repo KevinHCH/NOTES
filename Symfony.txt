@@ -1,0 +1,15 @@
+== SYMFONY ==
+** MANUAL DE CREACION DE PROYECTOS **
+
+PARA LA CREACION DE PROYECTOS EN SYMFONY ES NECEARIO TENER INSTALADOS ESTOS PROGRAMAS
+
+	-apache2
+	-php7.2(o version mas actual)
+	-php7.2-xml
+	-php7.2-xsl
+	-php7.2-curl
+	-mysql
+	-mysql.workbench(opcional)
+
+Si al crear el proyecto salta error, la consola informara de las dependencias 
+necesarias para la creacion del proyecto

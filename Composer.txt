@@ -14,12 +14,3 @@
 -Desde cualquier parte del sistema, escribimos en la consola: 
 	composer --version 
 	Si nos devuelve la version de composer es que todo ha ido bien
-
-########## TENER EN CUENTA #####################################################################################
-PARA LA INSTALACION DE COMPOSER ES NECESARIO TENER UNA SERIE DE PROGRAMAS Y DEPENDENCIAS PREVIAMENTE INSTALADOS:
-	-apache2
-	-php7.2(o version mas actual)
-	-php7.2-xml
-	-php7.2-xsl
-	-php7.2-curl
-#################################################################################################################
