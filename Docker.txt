@@ -1,0 +1,84 @@
+##### DOCKER #########################
+-Intalacion docker desde linux:
+	+Consultar pagina: get.docker.com
+	+Ejecutar las 2 primeras lineas del script (curl) 
+	+Agregar al usuario al grupo de Docker para tenga permisos 
+		(el comando te lo da docker)
+	+Comprobar instalacion con comando: $ docker
+-Imagenes / DockerHub
+	+Docker esta compuesto por imagenes (snapshots) hechos por 
+	usuarios de la comunidad para usar el modulo que se necesite
+	+Consultar: docker.hub.com (sistema de repo de imagenes de docker)
+		En ella se pueden buscar imagenes por palabras especificas
+		y tienen soporte por parte de usuarios y empresas
+-Descargar imagenes: 
+	+$ docker search "palabra"	
+		docker search ubuntu
+	+$ docker pull ubuntu
+	+Reiniciar la maquina para que se apliquen los permisos
+-Comandos:
+	+docker images: Lista contenedores
+	+docker images --help
+	+docker images -q: Solo mostrara las IDs de las imagenes
+	+docker search ubuntu:14.04 : Los ":" permiten buscar imagenes por tags (versiones)
+	+docker run <nombre_contenedor>
+		Este comando permite descargar e iniciar un contenedor
+			ej: docker run hello-world
+	+docker ps: Muestra los contenedores activos
+	+docker ps -a: Muestra la ID de la imagen y el ESTADO del contenedor
+	+docker run <nombre_contenedor> + comando: Permite ejecutar un comando en el contenedor
+		incluso cuando esta apagado
+		ej: docker run ubuntu ls (listara directorios raiz de ese contenedor)
+	+docker run -i -t ubuntu bash: Permite arrancar la maquina en modo interactivo,
+		usara la imagen de ubuntu, y dejara una terminal bash abierta para trabajar con 
+		ese contenedor
+		(Tambien se puede usar: docker run -it ubuntu)
+	+docker run -i -t ubuntu bash: Creara una consola interactiva con la imagen de ubuntu en sudo su.
+		Si salimos de la consola interactiva, el contenedor se detendra.
+		Si queremos volver a conectarnos al contenedor tendremos que obtener el ID de la imagen
+	+docker start <id_contenedor>: Permite arrancar el contenedor, pero NO te conecta aun
+	+docker attach <id_contenedor>: Te conectara a la consola interactiva del contenedor (Puede ser el Id completo
+		o solo las 2 primeras letras / numeros del id del contenedor)
+	+docker run --name <nombre_contenedor> -it ubuntu: Permite establecer un nombre al contenedor para una
+		mayor organizacion
+	+docker stop <id>: Detiene el contenedor (tambien escribiendo exit salimos del contenedor)
+	+Shorcut: Ctrl + p + q: Permite salir del contenedor SIN detenerlo
+	+docker commit <id_cotenedor> <nombre_imagen_commit>: Hara un commit de la imagen seleccionada.
+		Es como crear una copia de la imagen, con un nuevo nombre + tus modificaciones
+		Para poder usar tu imagen creada es necesario usar el comando:
+			docker run -it nombreDeTuaImagenDeCommit
+
+++
+	LAS IMAGENES SE SUELEN CREAR CON UNA SOLA FINALIDAD: SI DESCARGARS Y USAS UNA IMAGEN 
+	DE APACHE, ES POR QUE SOLO QUIERES UN SERVER DE APACHE PARA JUGAR UN POCO.
+	PUEDES DESCARGAR IMAGENES Y MODIFICARLAS A TU GUSTO Y HACER UN COMMIT DE LAS MISMAS PARA TI
+++
+==Docker files==
+	Son archivos de texto que permiten la creacion de directivas para la creacion de imagenes
+	de contenedores, en este archivo se especifica que tendra, cual sera la finalidad,
+	que programas tendra, que comandos se ejecutaran...
+	**ESTRUCTURA DOCKER FILE**
+		FROM SO / SO CON SU VERSION
+		MAINTAINER <NOMBRE> <EMAIL>
+		RUN APT UPDATE (PRIMER COMANDO QUE SE EJECUTARA AL CREAR LA IMAGEN)
+		RUN APT INSTALL APACHE2 -Y(EJEMPLO)
+		RUN APT INSTALL PHP7.2 -Y
+		EXPOSE 80 (PUERTO QUE HABILITARA PARA ESTE CONTENEDOR)
+		CMD /USR/SBIN/APACHE2CTL -D FOREGROUND (FINALIDAD DEL CONTENEDOR)
+			AL TERMINAR LA INSTALACION, IRA HACIA ESA RUTA Y ENCENDERA EL SERVICIO DE APACHE
+	
+	El nombre del archivo es "Dockerfile" siempre, sin extension.
+
+	+docker build -t <nuevo_nombre_imagen> <ruta_completa_dockerfile>: Montara y descargara la imagen para crear el contenedor
+		ej: docker build -t miweb /home/budget/Documents/ (Aqui ya encuentra el dockerfile)
+	+docker run -d -p 80:85 miweb: Creara el contenedor con la imagen de "miweb", se conectara al puerto 85 y arrancara apache2
+
+**IMPORTANTE*********************************************************************
+	AL USAR LA ISO DE UN SO (EJ: UBUNTU), SOLO NOS DARA UNA VERSION
+	SIMPLE Y CON LOS RECURSOS BASICOS PARA QUE EL SO FUNCIONE, ES DECIR
+	QUE TENDREMOS QUE INSTALAR TODOS LOS PROGRAMAS Y DEPENDENCIAS
+	PARA PODER USARLO COMO MAQUINA DE DESARROLLO.
+
+	-LO PRIMERO ES HACER UN: APT UPDATE (SIEMPRE)
+	-LUEGO SE PODRAN IR INSTALANDO EL RESTO DE PROGRAMAS (GIT, APACHE, PHP...)
+**********************************************************************************

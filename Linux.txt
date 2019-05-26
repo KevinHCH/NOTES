@@ -1,0 +1,26 @@
+==== COMANDOS LINUX ====
+date: Fecha y hora del sistema
+wc: Devuelve el numero de lineas de un archivo
+        wc -l test.txt
+ls: Lista archivos de la carpeta
+ll: Lista detallada de archivos de la carpeta
+head --lines=3: Devolvera las 3 primeras lineas de un archivo
+touch + nombre del archivo + su extension: Creara el archivo
+        touch test.txt
+cat + nombre archivo: Mostrara todo el contenido del archivo en consola
+>: Permite escribir lo que se obtenga en un archivo
+        ls -l test.txt > prueba.idea
+        Buscara el archivo test y copiara el contenido y
+        creara el archivo prueba
+history: Devolvera el historial de comandos de la consola
+        Si se usa: !32: Volvera a ejecutar el comando numero 32
+ssh + usuario/dominio: Permite establecer una conexion SSH con el host deseado
+ (Sirve para conectarse con otras maquinas en remoto)
+rm + nombre archivo: Permite eliminar el archivo
+rm -R + nombre carpeta: Permite eliminar la carpeta con su contenido
+rmdir -R + nombre carpeta: Permite eliminar carpetas vacias
+ps: Lista procesos funcionando
+ps aux: Lista todos los procesos, ya sean demons u otros
+        Los demons estan señalados por "?"
+Tecla windows: Permite ver aplicaciones abiertas e
+interactuar de manera mas grafica
